@@ -35,7 +35,7 @@ int main(){
   return 0;
 }
 
-void initPart(){
+void initBoot(){
   // your part boot code
   printf("start xxxx part");
 }
