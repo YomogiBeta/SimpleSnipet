@@ -2,7 +2,9 @@
   "name": "simplesnipet",
   "displayName": "SimpleSnipet",
   "description": "Provides simpler, more useful code snippets.",
-  "version": "0.0.1",
+  "author": "YomogiBeta",
+  "publisher": "YomogiBeta",
+  "version": "1.0.0",
   "engines": {
     "vscode": "^1.66.0"
   },
@@ -20,6 +22,10 @@
         "title": "Hello World"
       }
     ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YomogiBeta/SimpleSnipet.git"
   },
   "scripts": {
     "vscode:prepublish": "npm run package",
