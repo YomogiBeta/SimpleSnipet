@@ -15,7 +15,7 @@ To the workspace route . /vscsnipets directory in the root of the workspace.
 
 ## 2. Create Snipet file
 
-Create a file in the vscsnipets directory with the prefix as the file name
+Create a file in the .vscsnipets/ directory with the prefix as the file name
 {prefix}.extension
 
 ex: first.ts  start.c
@@ -41,8 +41,8 @@ void initBoot(){
 }
 ```
 
-## 4. Write a snippet
-Where you want to expand the code. Write a snippet
+## 4. Write a prefix
+Where you want to expand the code. Write a prefix
 
 ![Control](https://user-images.githubusercontent.com/46161490/162134650-5d5e1a2b-ccc2-406b-b37a-95d83f06b356.gif)
 
