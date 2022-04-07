@@ -4,7 +4,7 @@
   "description": "Provides simpler, more useful code snippets.",
   "author": "YomogiBeta",
   "publisher": "YomogiBeta",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "engines": {
     "vscode": "^1.66.0"
   },
@@ -15,14 +15,6 @@
       "workspaceContains:.vscsnipets/"
   ],
   "main": "./dist/extension.js",
-  "contributes": {
-    "commands": [
-      {
-        "command": "projectsnipet.helloWorld",
-        "title": "Hello World"
-      }
-    ]
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/YomogiBeta/SimpleSnipet.git"
