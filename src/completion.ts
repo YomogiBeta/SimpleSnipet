@@ -14,9 +14,9 @@ export default class Completions implements vscode.CompletionItemProvider {
     const result: vscode.CompletionItem[] = []
     this.snipet.forEach(item => {
       let completion = new vscode.CompletionItem(item.keyword)
-      completion.insertText = new vscode.SnippetString(item.body)
+      completion.insertText = new vscode.SnippetString(item.document.getText())
       result.push(completion)
     })
-return result
+    return result
   }
 }

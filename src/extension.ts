@@ -2,7 +2,7 @@ import * as vscode from "vscode"
 import { Snipet } from "./@types/SnipetType"
 import Completion from "./completion"
 
-export function activate(context: vscode.ExtensionContext) {
+const loadSnipets = (context: vscode.ExtensionContext) => {
   const snipets: Snipet = {}
   if (vscode.workspace.workspaceFolders !== undefined) {
     const vscsnipetsPattern = new vscode.RelativePattern(
@@ -17,15 +17,16 @@ export function activate(context: vscode.ExtensionContext) {
             await vscode.workspace
               .openTextDocument(uri)
               .then(async (textDocument: vscode.TextDocument) => {
-                if (snipets[textDocument.languageId] === undefined)
-                  {snipets[textDocument.languageId] = []}
+                if (snipets[textDocument.languageId] === undefined) {
+                  snipets[textDocument.languageId] = []
+                }
                 let fileName = textDocument.fileName
                 snipets[textDocument.languageId].push({
                   keyword: fileName.substring(
                     fileName.lastIndexOf("/") + 1,
                     fileName.lastIndexOf(".")
                   ),
-                  body: textDocument.getText(),
+                  document: textDocument,
                 })
               })
           })
@@ -39,6 +40,43 @@ export function activate(context: vscode.ExtensionContext) {
         })
       })
   }
+}
+export function activate(context: vscode.ExtensionContext) {
+  loadSnipets(context)
+
+  vscode.workspace.onDidCreateFiles((event: vscode.FileCreateEvent) => {
+    event.files.map((file: vscode.Uri) => {
+      let fileName = file.path.substring(
+        file.path.lastIndexOf("/") + 1,
+        file.path.length
+      )
+      console.log(fileName)
+      if (
+        vscode.workspace.workspaceFolders?.[0].uri.path +
+          "/.vscsnipets/" +
+          fileName ===
+        file.path
+      ) {
+        vscode.workspace
+          .openTextDocument(file)
+          .then(async (textDocument: vscode.TextDocument) => {
+            let provider = vscode.languages.registerCompletionItemProvider(
+              textDocument.languageId,
+              new Completion([
+                {
+                  keyword: fileName.substring(
+                    fileName.lastIndexOf("/") + 1,
+                    fileName.lastIndexOf(".")
+                  ),
+                  document: textDocument,
+                },
+              ])
+            )
+            context.subscriptions.push(provider)
+          })
+      }
+    })
+  })
 }
 
 export function deactivate() {}
