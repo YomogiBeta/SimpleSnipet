@@ -50,7 +50,7 @@ export function activate(context: vscode.ExtensionContext) {
         file.path.lastIndexOf("/") + 1,
         file.path.length
       )
-      console.log(fileName)
+     // console.log(fileName)
       if (
         vscode.workspace.workspaceFolders?.[0].uri.path +
           "/.vscsnipets/" +
