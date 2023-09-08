@@ -11,11 +11,10 @@ export default class Completions implements vscode.CompletionItemProvider {
   public provideCompletionItems(): vscode.ProviderResult<
     vscode.CompletionItem[]
   > {
-    const result: vscode.CompletionItem[] = []
-    this.snipet.forEach(item => {
+    const result: vscode.CompletionItem[] = this.snipet.map(item => {
       let completion = new vscode.CompletionItem(item.keyword)
       completion.insertText = new vscode.SnippetString(item.document.getText())
-      result.push(completion)
+      return completion
     })
     return result
   }
