@@ -1,5 +1,5 @@
 import * as vscode from "vscode"
-import { Snipets} from "./@types/SnipetType"
+import { Snipets } from "./@types/SnipetType"
 import Completion from "./completion"
 
 const loadSnipets = async (context: vscode.ExtensionContext) => {
